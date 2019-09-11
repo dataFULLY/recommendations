@@ -20,9 +20,17 @@ const PlaceList = () => {
   useEffect(() => {
     const splitUrl = document.URL.split('/');
     const i = splitUrl.indexOf('listing');
-    const id = splitUrl[i + 1];
-    const url = `http://ec2-13-52-191-198.us-west-1.compute.amazonaws.com:3004/api/nearbyPlaces/${id}`;
-    axios(url)
+    let id = 0;
+    if (i >= 0) {
+      id = splitUrl[i + 1];
+    }
+    // const url = `http://ec2-13-52-191-198.us-west-1.compute.amazonaws.com:3004/api/nearbyPlaces/${id}`;
+    const url = `/api/nearbyPlaces/${id}`;
+    axios.get(url, {
+      params: {
+        id,
+      },
+    })
       .then((response) => response.data)
       .then((fetchedPlaces) => {
         setPlaces(fetchedPlaces);

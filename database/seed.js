@@ -2,6 +2,7 @@ const faker = require('faker');
 const model = require('./index.js');
 
 const fakeList = [];
+const newPlaces = [];
 
 model.db.once('open', () => {
   // delete all collections
@@ -10,6 +11,9 @@ model.db.once('open', () => {
 
     }),
     model.db.dropCollection('savedlists').catch(() => {
+
+    }),
+    model.db.dropCollection('listings').catch(() => {
 
     }),
   ];
@@ -26,7 +30,6 @@ model.db.once('open', () => {
     }
     return model.SavedList.create(savedLists);
   }).then(() => {
-    const newPlaces = [];
     for (let i = 1; i < 101; i += 1) {
       // randomly chooses true or false
       let plusVerified = true;
@@ -60,10 +63,22 @@ model.db.once('open', () => {
       };
       newPlaces.push(newPlace);
     }
-
     return model.Place.create(newPlaces);
   }).then(() => {
-    console.log('Seeding Done');
-    process.exit();
-  });
+    // Grab random listings
+    const listings = [];
+    for (let id = 0; id < 101; id += 1) {
+      const places = [];
+      const rand = Math.floor(Math.random() * 6 + 5);
+      for (let i = 0; i < rand; i += 1) {
+        places.push(newPlaces[Math.floor(Math.random() * 100)]);
+      }
+      listings.push({ id, places });
+    }
+    return model.Listing.create(listings);
+  })
+    .then(() => {
+      console.log('Seeding Done');
+      process.exit();
+    });
 });
