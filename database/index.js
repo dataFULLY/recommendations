@@ -35,8 +35,17 @@ const savedListSchema = new mongoose.Schema({
 
 const SavedList = mongoose.model('SavedList', savedListSchema);
 
+
+const listingsSchema = new mongoose.Schema({
+  id: Number,
+  places: [placeSchema],
+});
+
+const Listing = mongoose.model('Listings', listingsSchema);
+
 module.exports = {
   db,
   SavedList,
   Place,
+  Listing,
 };
