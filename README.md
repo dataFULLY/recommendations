@@ -42,7 +42,7 @@ npm install
 Creates a new listing with the provided data.  
 
 #### Input format:
-```json
+```sh
 { url, title, city, state, country, plusVerified, propertyType, price, averageReview, totalReviews, savedList, about, theSpace, neighborhood }  
 ```
 
