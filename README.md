@@ -39,25 +39,25 @@ npm install
 ## RESTful CRUD APIs
 
 ### Create a Listing 
-Creates a new listing with the provided data.
-Input format: { url, title, city, state, country, plusVerified, propertyType, price, averageReview, totalReviews, savedList, about, theSpace, neighborhood }
-POST: app.post('/api/nearbyPlaces/')
-Returns the listing object if successful.
+Creates a new listing with the provided data.  
+Input format: { url, title, city, state, country, plusVerified, propertyType, price, averageReview, totalReviews, savedList, about, theSpace, neighborhood }  
+POST: app.post('/api/nearbyPlaces/')  
+Returns the listing object if successful.  
 
 ### Retrieve a Listing
-Retrieves a listing for a given id.
-Input format: id
-GET: app.get('/api/nearbyPlaces/:id')
+Retrieves a listing for a given id.  
+Input format: id  
+GET: app.get('/api/nearbyPlaces/:id')  
 Returns the listing object if successful.
 
 ### Update a Listing
-Updates a listing for a given id with the provided data.
-Input format: id
-PUT: app.put('/api/nearbyPlaces/:id')
-Returns the updated listing object if successful.
+Updates a listing for a given id with the provided data.  
+Input format: id  
+PUT: app.put('/api/nearbyPlaces/:id')  
+Returns the updated listing object if successful.  
 
 ### Delete a Listing
-Deletes a listing for a given id.
-Input format: id
-DELETE: app.delete('/api/nearbyPlaces/:id')
+Deletes a listing for a given id.  
+Input format: id  
+DELETE: app.delete('/api/nearbyPlaces/:id')  
 Returns the deleted listing object if successful.
