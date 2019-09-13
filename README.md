@@ -41,32 +41,37 @@ npm install
 ### Create a Listing 
 Creates a new listing with the provided data.  
 
-#### Input format:
+#### Input body format:
 ```sh
 { url, title, city, state, country, plusVerified, propertyType, price, averageReview, totalReviews, savedList, about, theSpace, neighborhood }  
 ```
 
-POST: app.post('/api/nearbyPlaces/')  
+POST: '/api/listings/' 
 
 Returns the listing object if successful.  
 
 ### Retrieve a Listing
 Retrieves a listing for a given id.  
 
-GET: app.get('/api/nearbyPlaces/:id')  
+GET: '/api/listings/:id'
 
 Returns the listing object if successful.
 
 ### Update a Listing
-Updates a listing for a given id with the provided data.  
+Updates and replaces a listing for a given id with the provided data.  
 
-PUT: app.put('/api/nearbyPlaces/:id')  
+#### Input body format:
+```sh
+{ url, title, city, state, country, plusVerified, propertyType, price, averageReview, totalReviews, savedList, about, theSpace, neighborhood }  
+```
+
+PUT: '/api/listings/:id' 
 
 Returns the updated listing object if successful.  
 
 ### Delete a Listing
 Deletes a listing for a given id.  
 
-DELETE: app.delete('/api/nearbyPlaces/:id')  
+DELETE: '/api/listings/:id' 
 
 Returns the deleted listing object if successful.
