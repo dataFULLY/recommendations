@@ -75,3 +75,24 @@ Deletes a listing for a given id.
 DELETE: '/api/listings/:id' 
 
 Returns the deleted listing object if successful.
+
+### Create a Favorites List
+Creates a listing for a given listing id and user id.  
+
+#### Input body format:
+```sh
+{ listName, userID }  
+```
+POST: '/api/fav-lists' 
+
+Returns the new favorite list if successful.
+
+
+### Add Current Listing to a Favorites List
+Adds the current listing for a given listing id and user id.  
+```sh
+{ listName, userID }  
+```
+POST: '/api/fav-lists/:id' 
+
+Returns the new favorite list if successful.
