@@ -36,6 +36,16 @@ app.get('/api/listing/:id', (req, res) => {
   });
 });
 
+// Creates a new listing
+app.post('api/listing', (req, res) => {
+
+});
+
+// Deletes a listing
+app.post('api/listing', (req, res) => {
+
+});
+
 app.get('/api/savedlist/:id', (req, res) => {
   let { id } = req.params;
   if (!id) {
@@ -47,25 +57,19 @@ app.get('/api/savedlist/:id', (req, res) => {
   });
 });
 
+// Creates a new entry for lists under current userID
 app.post('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec()
-    .then((result) => {
-      res.send(result);
-    });
+
 });
 
+// Creates new entry for listings in target list under current userID
 app.put('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec()
-    .then((result) => {
-      res.send(result);
-    });
+
 });
 
+// Deletes entry for listings in target list under current userID
 app.delete('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec()
-    .then((result) => {
-      res.send(result);
-    });
+
 });
 
 app.listen(port, () => {
