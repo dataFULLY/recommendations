@@ -1,13 +1,12 @@
 require('newrelic');
 const express = require('express');
 const cors = require('cors');
-const model = require('../database/index');
 const client = require('../database/cassandra/index');
 
 const port = 3004;
 const app = express();
 
-app.use(require('morgan')('dev'));
+// app.use(require('morgan')('dev'));
 
 app.use(cors());
 app.use(express.static('public'));
@@ -23,9 +22,10 @@ app.get('/api/listing/:id', (req, res) => {
   client.execute(query)
     .then((response) => {
       const { city } = response.rows[0];
-      const query = `SELECT * FROM places_by_city WHERE city = '${city}'`;
+      const query = 'SELECT * FROM places_by_city WHERE city = ?';
       // const query = 'SELECT * FROM places_by_city LIMIT 7';
-      return client.execute(query);
+      // console.log(query);
+      return client.execute(query, [city]);
     })
     .then((response) => {
       const arr = response.rows.map((places) => places.Row);
@@ -46,25 +46,29 @@ app.get('/api/savedlist/:id', (req, res) => {
     });
 });
 
+
+// Creates a new listing
+app.post('api/listing', (req, res) => {
+
+});
+
+// Deletes a listing
+app.post('api/listing', (req, res) => {
+
+});
+// Creates a new entry for lists under current userID
 app.post('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec()
-    .then((result) => {
-      res.send(result);
-    });
+
 });
 
+// Creates new entry for listings in target list under current userID
 app.put('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec()
-    .then((result) => {
-      res.send(result);
-    });
+
 });
 
+// Deletes entry for listings in target list under current userID
 app.delete('/api/savedlist', (req, res) => {
-  model.SavedList.find().exec()
-    .then((result) => {
-      res.send(result);
-    });
+
 });
 
 app.listen(port, () => {

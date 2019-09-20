@@ -2,14 +2,49 @@ DROP KEYSPACE IF EXISTS nearby;
 CREATE KEYSPACE nearby WITH REPLICATION ={'class': 'SimpleStrategy', 'replication_factor':1};
 USE nearby;
 
--- DROP TABLE IF EXISTS Place;
--- DROP TABLE IF EXISTS listings;
 DROP TABLE IF EXISTS places;
-DROP MATERIALIZED VIEW IF EXISTS nearby.places_by_state;
+DROP MATERIALIZED VIEW IF EXISTS nearby.places_by_city;
 
--- CREATE TYPE Place(
+CREATE TABLE places_by_city(
+  id bigint,
+  url int,
+  title text,
+  city text,
+  state text,
+  -- country text,
+  -- plusVerified boolean,
+  -- propertyType text,
+  -- price int,
+  -- averageReview double,
+  -- totalReviews int,
+  -- about text,
+  -- theSpace text,
+  -- neighborhood text,
+  PRIMARY KEY (city, id)
+);
+
+-- View to find city by ID
+DROP materialized view if exists city_by_id;
+CREATE MATERIALIZED VIEW city_by_id AS 
+SELECT id,city FROM places_by_city 
+WHERE id IS NOT NULL AND
+city is NOT NULL
+PRIMARY KEY (id, city);
+
+DROP TABLE IF EXISTS favList_by_userID;
+CREATE TABLE favList_by_userID(
+  favListID bigint,
+  listName text,
+  userID bigint,
+  placeID bigint,
+  PRIMARY KEY (userID, favListID, placeID)
+);
+
+
+-- -- DROP MATERIALIZED VIEW IF EXISTS nearby.places_by_state;
+-- CREATE TABLE places_by_state(
 --   id bigint,
---   url text,
+--   url int,
 --   title text,
 --   city text,
 --   state text,
@@ -21,34 +56,14 @@ DROP MATERIALIZED VIEW IF EXISTS nearby.places_by_state;
 --   totalReviews int,
 --   about text,
 --   theSpace text,
---   neighborhood text
+--   neighborhood text,
+--   PRIMARY KEY (state)
 -- );
 
--- CREATE TABLE listings (
---     id bigint PRIMARY KEY,
---     places set <frozen <Place>>
--- );
-
-CREATE TABLE places(
-  id bigint,
-  url int,
-  title text,
-  city text,
-  state text,
-  country text,
-  plusVerified boolean,
-  propertyType text,
-  price int,
-  averageReview double,
-  totalReviews int,
-  about text,
-  theSpace text,
-  neighborhood text,
-  PRIMARY KEY (id)
-);
-
-CREATE MATERIALIZED VIEW places_by_state AS 
-SELECT * FROM places 
-WHERE id IS NOT NULL AND
-state is NOT NULL
-PRIMARY KEY (state, id);
+-- -- View to find state by ID
+-- DROP materialized view if exists state_by_id;
+-- CREATE MATERIALIZED VIEW state_by_id AS 
+-- SELECT id,state FROM places_by_city 
+-- WHERE id IS NOT NULL AND
+-- state is NOT NULL
+-- PRIMARY KEY (id, state);

@@ -23,20 +23,28 @@
     "build": "npx webpack --mode=production",
     "start:dev": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
+    "startCass": "node ./server/cassServer.js --watch",
+    "startPostgres": "node ./server/postgresServer.js --watch",
     "seed": "node ./database/seed.js",
     "test:dev": "npx jest --watch",
     "test": "jest --ci --runInBand  --reporters=default --reporters=jest-junit",
     "cassSeed": "node ./database/cassandra/seed.js",
-    "dataSeed": "node ./database/dataSeed2.js"
+    "dataSeed": "node ./database/dataSeed2.js",
+    "dataSeedFav": "node ./database/dataSeedFav.js",
+    "dataSeedFav2": "node ./database/dataSeedFav2.js"
   },
   "dependencies": {
+    "artillery": "^1.6.0-28",
     "cassandra-driver": "^4.1.0",
     "cors": "^2.8.5",
     "csv-write-stream": "^2.0.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mongoose": "^5.6.10",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "newrelic": "^5.11.0",
+    "pg": "^7.12.1",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "prop-types": "^15.7.2",
