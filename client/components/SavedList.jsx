@@ -27,7 +27,7 @@ const SavedList = () => {
   useEffect(() => {
     // axios('http://ec2-13-52-191-198.us-west-1.compute.amazonaws.com:3004/api/savedList')
 
-    axios('/api/savedList')
+    axios('http://localhost:3005/api/savedList/0')
       .then((response) => {
         setSavedList(response.data);
       });

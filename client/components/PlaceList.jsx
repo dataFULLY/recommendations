@@ -25,7 +25,7 @@ const PlaceList = () => {
       id = splitUrl[i + 1];
     }
     // const url = `http://ec2-13-52-191-198.us-west-1.compute.amazonaws.com:3004/api/nearbyPlaces/${id}`;
-    const url = `/api/nearbyPlaces/${id}`;
+    const url = `http://localhost:3005/api/listing/${id}`;
     axios.get(url, {
       params: {
         id,
@@ -33,6 +33,19 @@ const PlaceList = () => {
     })
       .then((response) => response.data)
       .then((fetchedPlaces) => {
+        fetchedPlaces.forEach((place) => {
+          place.url = `https://mock-property-images.s3-us-west-1.amazonaws.com/houses/house-${place.url}.jpeg`;
+          place.savedList = [];
+          place.country = 'a';
+          place.plusVerified = true;
+          place.propertyType = 'a';
+          place.price = 101;
+          place.averageReview = 4.57;
+          place.totalReviews = 304;
+          place.about = 'Nam repudiandae non vel earum rem quia expl';
+          place._id = place.id;
+          place.__v = 0;
+        });
         setPlaces(fetchedPlaces);
       });
   }, []);
