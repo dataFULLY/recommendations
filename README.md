@@ -6,7 +6,7 @@
 
   - https://github.com/dataFULLY/reservation
   - https://github.com/dataFULLY/reviews
-  - https://github.com/dataFULLY/recommedendations
+  - https://github.com/dataFULLY/recommedations
 
 ## Table of Contents
 
