@@ -1,6 +1,5 @@
-# Recommedantions Service
-
-> Displays listings nearby
+# Recommedations Service
+Re-architected the back-end of microservice to handle high volumes of network traffic 
 
 ## Related Projects
 
